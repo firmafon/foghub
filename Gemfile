@@ -1,9 +1,11 @@
 source "http://rubygems.org"
 
-gem 'sinatra'
+gem 'rack', '1.2.2'
+gem 'sinatra', '1.2.2'
 gem 'typhoeus'
 gem 'crack'
 gem 'ruby-fogbugz'
+gem 'json' # for rubinius
 
 group :development do
   gem 'minitest'
