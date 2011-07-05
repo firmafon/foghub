@@ -65,11 +65,25 @@ class Parser < FogTest
     commit.aliases = {
         2 => ["sirupsen", "sirup"],
         4 => ["mkyed", "michael", "kyed"],
-        8 => ["harry", "vangberg", "ichverstehe"]
+        8 => ["harey", "vangberg", "ichverstehe"]
     }
 
     ids = commit.reviewer_ids
 
     assert_equal [2, 4], ids
+  end
+
+  test 'parsing commits for pull requests shouldn\'t give cases' do
+    commit = "Merge pull request #15 from"
+    commit = CommitParser.new(commit)
+
+    assert_empty commit.cases
+  end
+
+  test 'parsing commits with no cases should yield an empty array' do
+    commit = "fix"
+    commit = CommitParser.new(commit)
+
+    assert_empty commit.cases
   end
 end

@@ -35,6 +35,7 @@ class CommitParser
   private
   def parse_cases
     # #flatten because it returns Inception arrays (arrays inside arrays)
+    return [] if @raw_commit =~ /pull request/
     @raw_commit.scan(/#(\d+)/).flatten.map(&:to_i)
   end
 
