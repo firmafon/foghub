@@ -48,7 +48,7 @@ class CommitMessage < FogTest
       }
     }
 
-    app.fogbugz.expects(:command).with(:new, {:sPersonAssignedTo => 2, :sCategory => 'Code Review', :sEvent => 'commit needs #review by @sirupsen http://github.com/firmafon/foghub/commit/41a212ee83ca127e3c8cf465891ab7216a705f59'})
+    app.fogbugz.expects(:command).with(:new, {:sPersonAssignedTo => 2, :sCategory => 'Code Review', :sEvent => 'commit needs #review by @sirupsen - Sirupsen http://github.com/firmafon/foghub/commit/41a212ee83ca127e3c8cf465891ab7216a705f59'})
 
     post '/commit', :payload => github_data('commit needs #review by @sirupsen')
   end
@@ -61,8 +61,8 @@ class CommitMessage < FogTest
       }
     }
     
-    app.fogbugz.expects(:command).with(:new, {:sPersonAssignedTo => 2, :sCategory => 'Code Review', :sEvent => 'commit for #87 needs #review by @sirupsen http://github.com/firmafon/foghub/commit/41a212ee83ca127e3c8cf465891ab7216a705f59'})
-    app.fogbugz.expects(:command).with(:edit, {:ixBug => 87, :sEvent => 'commit for #87 needs #review by @sirupsen http://github.com/firmafon/foghub/commit/41a212ee83ca127e3c8cf465891ab7216a705f59'})
+    app.fogbugz.expects(:command).with(:new, {:sPersonAssignedTo => 2, :sCategory => 'Code Review', :sEvent => 'commit for #87 needs #review by @sirupsen - Sirupsen http://github.com/firmafon/foghub/commit/41a212ee83ca127e3c8cf465891ab7216a705f59'})
+    app.fogbugz.expects(:command).with(:edit, {:sEvent => 'commit for #87 needs #review by @sirupsen - Sirupsen http://github.com/firmafon/foghub/commit/41a212ee83ca127e3c8cf465891ab7216a705f59', :ixBug => 87})
 
     post '/commit', :payload => github_data('commit for #87 needs #review by @sirupsen')
   end
@@ -77,7 +77,7 @@ class CommitMessage < FogTest
     commit = 'commit with a case #18'
 
     app.instance = mock()
-    app.fogbugz.expects(:command).with(:edit, {:ixBug => 18, :sEvent => 'commit with a case #18 http://github.com/firmafon/foghub/commit/41a212ee83ca127e3c8cf465891ab7216a705f59'})
+    app.fogbugz.expects(:command).with(:edit, {:ixBug => 18, :sEvent => 'commit with a case #18 - Sirupsen http://github.com/firmafon/foghub/commit/41a212ee83ca127e3c8cf465891ab7216a705f59'})
 
     post '/commit', :payload => github_data(commit)
   end
@@ -92,7 +92,7 @@ class CommitMessage < FogTest
       }
     }
 
-    app.fogbugz.expects(:command).with(:edit, {:ixBug => 18, :sEvent => 'commit with a case #18 assign back to @sirupsen http://github.com/firmafon/foghub/commit/41a212ee83ca127e3c8cf465891ab7216a705f59'})
+    app.fogbugz.expects(:command).with(:edit, {:ixBug => 18, :sEvent => 'commit with a case #18 assign back to @sirupsen - Sirupsen http://github.com/firmafon/foghub/commit/41a212ee83ca127e3c8cf465891ab7216a705f59'})
 
     post '/commit', :payload => github_data(commit)
   end

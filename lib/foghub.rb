@@ -30,7 +30,7 @@ class Foghub < Sinatra::Base
       commit.aliases = config[:aliases]
 
       if commit.review? && commit.reviewers.length >= 1
-        message = "#{raw_commit["message"]} #{raw_commit["url"]}"
+        message = "#{raw_commit["message"]} - #{raw_commit["author"]["name"]} #{raw_commit["url"]}"
 
         params = {
           :sPersonAssignedTo => commit.reviewer_ids.first,
@@ -43,7 +43,7 @@ class Foghub < Sinatra::Base
 
       unless commit.cases.empty?
         commit.cases.each do |case_id|
-          message = "#{raw_commit["message"]} #{raw_commit["url"]}"
+          message = "#{raw_commit["message"]} - #{raw_commit["author"]["name"]} #{raw_commit["url"]}"
           params = {:ixBug => case_id, :sEvent => message}
 
           fogbugz.command(:edit, params)
