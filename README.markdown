@@ -2,7 +2,7 @@ Foghub associates Git commits with Fogbugz cases and code reviews.
 
 Foghub is known to run on MRI Ruby 1.9.2.
 
-The code is under development.
+The code is under development if you have features requests then ping me at ns@firmafon.dk.
 
 # Why do code reviews?
 
